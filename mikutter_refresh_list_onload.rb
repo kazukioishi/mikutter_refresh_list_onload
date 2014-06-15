@@ -5,5 +5,5 @@ Plugin.create :mikutter_refresh_list_onload do
         Plugin[:list].timelines.values.each{ |list|
           Plugin[:list].list_modify_member(list)
         }
-	}
+    }
 end
