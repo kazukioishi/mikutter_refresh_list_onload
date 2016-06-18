@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
 Plugin.create :mikutter_refresh_list_onload do
-	Plugin[:list].fetch_list_of_service(Service.primary).next{
-		Plugin[:list].timelines.values.each{ |list|
-			Plugin[:list].list_modify_member(list)
-		}
+	Service.each{|service|
+		Plugin[:list].fetch_and_modify_for_using_lists(service)
 	}
 
 	command(:open_my_profile,
@@ -13,12 +11,9 @@ Plugin.create :mikutter_refresh_list_onload do
 		visible: true,
 		icon: File.dirname(__FILE__) + "/list.png",
 		role: :window) do |opt|
-
-		Plugin[:list].fetch_list_of_service(Service.primary).next{
-			Plugin[:list].timelines.values.each{ |list|
-				Plugin[:list].list_modify_member(list)
+			Service.each{|service|
+				Plugin[:list].fetch_and_modify_for_using_lists(service)
 			}
-		}
 	end
 
 end
